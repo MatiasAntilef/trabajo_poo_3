@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.gamejava.controller.MenuController"
+            prefWidth="950.0" prefHeight="600.0">
+
+
+    <!-- PANEL TOP -->
+    <top>
+        <HBox spacing="12.0" alignment="CENTER_LEFT"
+              style="-fx-background-color: #e9ecef; -fx-border-color: #dcdcdc; -fx-border-width: 0 0 1 0;">
+            <padding>
+                <Insets top="12" right="20" bottom="12" left="20"/>
+            </padding>
+
+            <Label text="Filtros:" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+
+            <TextField fx:id="txtBuscarNombre" promptText="1. Buscar por nombre..." HBox.hgrow="ALWAYS" minWidth="160"/>
+            <TextField fx:id="txtBuscarEmpresa" promptText="2. Empresa..." prefWidth="150"/>
+            <ComboBox fx:id="cmbFiltroGenero" promptText="3. Género" prefWidth="145"/>
+            <ComboBox fx:id="cmbFiltroPlataforma" promptText="4. Plataforma" prefWidth="145"/>
+            <TextField fx:id="txtPrecioMax" promptText="5. Precio máx ($)" prefWidth="125"/>
+
+            <Button text="Limpiar" onAction="#onLimpiarFiltrosClick"/>
+        </HBox>
+    </top>
+
+    <!-- PANEL IZQUIERDO-->
+    <left>
+        <VBox spacing="10.0" prefWidth="300.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #dcdcdc;">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Gestión de Videojuegos" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <Separator/>
+
+            <Label text="Nombre del juego:"/>
+            <TextField fx:id="txtNombre" promptText="Ej. Elden Ring"/>
+
+            <Label text="Empresa desarrolladora:"/>
+            <TextField fx:id="txtEmpresa" promptText="Ej. FromSoftware"/>
+
+            <Label text="Género:"/>
+            <TextField fx:id="txtGenero" promptText="Ej. RPG de Acción"/>
+
+            <Label text="Precio de salida ($):"/>
+            <TextField fx:id="txtPrecio" promptText="Ej. 59.99"/>
+
+            <Label text="URL o ruta de imagen:"/>
+            <HBox spacing="6.0">
+                <TextField fx:id="txtImagenUrl" promptText="https://... o archivo local" HBox.hgrow="ALWAYS"/>
+                <Button text="Buscar..." onAction="#onSeleccionarImagenClick"/>
+            </HBox>
+
+            <Label text="Plataformas:"/>
+            <GridPane hgap="10.0" vgap="6.0">
+                <CheckBox fx:id="chkPC" text="PC" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <CheckBox fx:id="chkCelular" text="Celular" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <CheckBox fx:id="chkPlayStation" text="PlayStation" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <CheckBox fx:id="chkXbox" text="Xbox" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <CheckBox fx:id="chkSwitch" text="Nintendo Switch" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2"/>
+            </GridPane>
+
+            <HBox spacing="10.0" alignment="CENTER">
+                <padding><Insets top="10"/></padding>
+                <Button text="Guardar" onAction="#onGuardarClick" style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold;" prefWidth="120"/>
+                <Button text="Actualizar" onAction="#onActualizarClick" style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-weight: bold;" prefWidth="120"/>
+            </HBox>
+
+            <HBox spacing="10.0" alignment="CENTER">
+                <Button text="Eliminar" onAction="#onEliminarClick" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-weight: bold;" prefWidth="120"/>
+                <Button text="Limpiar" onAction="#onLimpiarClick" prefWidth="120"/>
+            </HBox>
+        </VBox>
+    </left>
+
+    <!-- PANEL CENTRAL -->
+    <center>
+        <TableView fx:id="tablaJuegos" VBox.vgrow="ALWAYS">
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+            <columns>
+                <TableColumn fx:id="colPortada" text="Portada" minWidth="150" maxWidth="165"/>
+                <TableColumn fx:id="colId" text="ID" minWidth="45" maxWidth="60"/>
+                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="180"/>
+                <TableColumn fx:id="colEmpresa" text="Empresa" prefWidth="140"/>
+                <TableColumn fx:id="colGenero" text="Género" prefWidth="130"/>
+                <TableColumn fx:id="colPrecio" text="Precio ($)" minWidth="85" maxWidth="105"/>
+                <TableColumn fx:id="colPlataformas" text="Plataformas" prefWidth="180"/>
+            </columns>
+        </TableView>
+    </center>
+
+</BorderPane>
